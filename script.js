@@ -106,6 +106,10 @@ const gameModule = (() => {
     sign = sign === "X" ? "O" : "X"; 
     displayController.updateTurnDisplay(sign);
 
+    isDraw();
+  };
+
+  const isDraw = () => {
     if (movesCount === 9 && !isGameOver) {
       endGame("It's a Draw");
     }
