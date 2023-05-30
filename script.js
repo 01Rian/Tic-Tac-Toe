@@ -29,7 +29,6 @@ const gameBoard = (() => {
   const resetBoard = () => {
     cells.forEach((cell) => {
       cell.textContent = "";
-      cell.removeEventListener("click", addSign);
       cell.addEventListener("click", addSign);
     });
   };
@@ -56,7 +55,9 @@ const displayController = (() => {
   };
 
   const updateTurnDisplay = (sign) => {
-    infoTurnDisplay.textContent = `It is now ${sign === "X" ? "Cross" : "Circle"}'s turn`;
+    infoTurnDisplay.textContent = `It is now ${
+      sign === "X" ? "Cross" : "Circle"
+    }'s turn`;
   };
 
   const createRestartButton = () => {
@@ -91,7 +92,7 @@ const gameModule = (() => {
   ];
 
   const addSign = (cellId) => {
-    const cell = gameBoard.cells[Number(cellId)];
+    const cell = gameBoard.cells[cellId];
     const signDisplay = document.createElement("div");
 
     signDisplay.classList.add(sign);
@@ -103,7 +104,7 @@ const gameModule = (() => {
     movesCount++;
     checkWin();
 
-    sign = sign === "X" ? "O" : "X"; 
+    sign = sign === "X" ? "O" : "X";
     displayController.updateTurnDisplay(sign);
 
     isDraw();
